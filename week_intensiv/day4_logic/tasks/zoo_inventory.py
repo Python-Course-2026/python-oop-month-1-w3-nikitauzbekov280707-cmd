@@ -18,9 +18,11 @@ class ZooInventory:
         self.animals.append(animal)
 
     def calculate_monthly_food(self):
-        # ТВОЙ КОД: сумма (food_per_day каждого животного) * 30
-        pass
+        return 30*sum([animal.food_per_day for animal in self.animals])
 
     def count_species(self, species: str):
-        # ТВОЙ КОД: подсчет количества объектов с такой породой
-        pass
+        species_animal = []
+        for animal in self.animals:
+            if animal.species == species:
+                species_animal.append(animal)
+        return len(species_animal)

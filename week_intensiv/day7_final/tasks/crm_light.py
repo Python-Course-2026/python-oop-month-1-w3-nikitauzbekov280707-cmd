@@ -23,17 +23,21 @@ class CRM:
         self.clients.append(client)
 
     def get_client(self, client_id):
-        # ТВОЙ КОД ЗДЕСЬ
-        pass
+        for client in self.clients:
+            if client.client_id == client_id:
+                return client
+        return None
 
     def delete_client(self, client_id):
-        # ТВОЙ КОД ЗДЕСЬ
-        pass
+        self.clients.remove(self.get_client(client_id))
 
     def update_client(self, client_id, **kwargs):
         """
         Пример: update_client(1, name="New Name") должен изменить только имя.
         Используйте setattr(obj, key, value) для динамического обновления.
         """
-        # ТВОЙ КОД ЗДЕСЬ
-        pass
+        client = self.get_client(client_id)
+        if client is not None:
+            if kwargs.get('name') is not None: setattr(client, 'name', kwargs['name'])
+            if kwargs.get('email')is not None: setattr(client, 'email', kwargs['email'])
+            self.clients.append(client)

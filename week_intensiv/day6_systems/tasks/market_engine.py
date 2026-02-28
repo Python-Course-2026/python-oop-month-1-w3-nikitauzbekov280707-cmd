@@ -1,3 +1,6 @@
+from prompt_toolkit.key_binding.bindings.search import reverse_incremental_search
+
+
 class Item:
     def __init__(self, name, price):
         self.name = name
@@ -20,4 +23,7 @@ class Market:
        - Добавить item в список buyer.inventory.
     """
     def deal(self, buyer: Participant, seller: Participant, item: Item):
-        pass
+        if buyer.money < item.price: raise ValueError("Недостаточно средств")
+        buyer.money -= item.price
+        seller.money += item.price
+        buyer.inventory.append(item)
