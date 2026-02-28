@@ -1,5 +1,3 @@
-from prompt_toolkit.key_binding.bindings.search import reverse_incremental_search
-
 
 class Item:
     def __init__(self, name, price):
