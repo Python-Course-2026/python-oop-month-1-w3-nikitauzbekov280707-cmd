@@ -15,7 +15,25 @@ class Battle:
     4. Если оба погибли в один ход (маловероятно при такой логике, но всё же) или на входе кто-то мертв — вернуть имя выжившего.
     """
     def fight(self, h1: Hero, h2: Hero):
-        while (h1.hp > 0 and h2.hp > 0):
+        # ТВОЙ КОД ЗДЕСЬ
+        # Проверяем, не мертв ли кто-то уже в начале
+        if h1.hp <= 0:
+            return h2.name
+        if h2.hp <= 0:
+            return h1.name
+
+        # Бой продолжается, пока оба живы
+        while h1.hp > 0 and h2.hp > 0:
+            # Сначала атакует h2 (второй герой)
             h2.hp -= h1.atk
-            if h2.hp>0: h1.hp -= h2.atk
-        return h1.name if h1.hp > 0 else h2.name
+            if h1.hp <= 0 or h2.hp <= 0:
+                break
+
+            # Затем атакует h1 (первый герой)
+            h1.hp -= h2.atk
+
+        # Определяем победителя
+        if h1.hp > 0:
+            return h1.name
+        else:
+            return h2.name
